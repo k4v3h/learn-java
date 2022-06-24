@@ -54,6 +54,21 @@ public class BinarySearchTree implements ITree {
     }
 
     @Override
+    public Node search(int value) {
+        Node currentNode = root;
+        while (currentNode != null) {
+            if (currentNode.getData() == value) {
+                return currentNode;
+            } else if (value < currentNode.getData()) {
+                currentNode = currentNode.getLeft();
+            } else {
+                currentNode = currentNode.getRight();
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void print() {
         recursivePrint(root);
     }

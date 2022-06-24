@@ -6,4 +6,5 @@ public interface ITree {
     boolean add(int value);
     boolean isEmpty();
     void print();
+    Node search(int value);
 }

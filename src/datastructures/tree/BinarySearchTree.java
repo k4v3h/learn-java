@@ -69,6 +69,74 @@ public class BinarySearchTree implements ITree {
     }
 
     @Override
+    public void delete(int value) {
+        Node parent = null;
+        Node currentNode = root;
+        while (currentNode != null && currentNode.getData() != value) {
+            parent = currentNode;
+            if (value < currentNode.getData()) {
+                currentNode = currentNode.getLeft();
+            } else {
+                currentNode = currentNode.getRight();
+            }
+        }
+
+        if (currentNode == null)
+            return;
+
+        if (currentNode.isLeafNode()) {
+            if (currentNode == root) {
+                setRoot(null);
+            }
+             else if (currentNode.getData() < parent.getData()) {
+                parent.setLeft(null);
+            } else {
+                parent.setRight(null);
+            }
+            return;
+        }
+
+        // node has only one child
+        if (currentNode.getRight() == null) {
+            if (currentNode == root) {
+                setRoot(currentNode.getLeft());
+            }
+            else if (currentNode.getData() < parent.getData()) {
+                parent.setLeft(currentNode.getLeft());
+                return;
+            }
+            else {
+                parent.setRight(currentNode.getLeft());
+            }
+            return;
+        }
+
+        if (currentNode.getLeft() == null) {
+            if (currentNode == root) {
+                setRoot(currentNode.getRight());
+            } else if (currentNode.getData() < parent.getData()) {
+                parent.setLeft(currentNode.getRight());
+            } else {
+                parent.setRight(currentNode.getRight());
+            }
+            return;
+        }
+
+        // node has two children
+        Node leftMostNodeOfRightChild = findLeftMostNode(currentNode.getRight());
+        int leftMostNodeData = leftMostNodeOfRightChild.getData();
+        delete(leftMostNodeData);
+        currentNode.setData(leftMostNodeData);
+    }
+
+    private Node findLeftMostNode(Node currentNode) {
+        while (currentNode.getLeft() != null) {
+            currentNode = currentNode.getLeft();
+        }
+        return currentNode;
+    }
+
+    @Override
     public void print() {
         recursivePrint(root);
     }

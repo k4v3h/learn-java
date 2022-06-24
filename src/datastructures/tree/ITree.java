@@ -7,4 +7,5 @@ public interface ITree {
     boolean isEmpty();
     void print();
     Node search(int value);
+    void delete(int value);
 }

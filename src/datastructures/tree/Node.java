@@ -34,4 +34,8 @@ public class Node {
     public Node getRight() {
         return right;
     }
+
+    public boolean isLeafNode() {
+        return right == null && left == null;
+    }
 }

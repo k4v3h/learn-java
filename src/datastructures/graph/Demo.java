@@ -17,11 +17,16 @@ public class Demo {
 
         Map<Integer, List<Integer>> adjList = setToList(adjSet);
 
+        System.out.println("DFS");
         DFS dfs = new DFS(adjList);
         System.out.println("Iterative");
         dfs.search(root);
         System.out.println("\nRecursive");
         dfs.searchRec(root);
+
+        System.out.println("\nBFS");
+        BFS bfs = new BFS(adjList);
+        bfs.search(root);
     }
 
     private static Map<Integer, List<Integer>> setToList(Set<Integer[]> adjSet) {

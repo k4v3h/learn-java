@@ -2,7 +2,7 @@ package datastructures.graph;
 
 import java.util.*;
 
-public class DFS {
+public class DFS implements Search {
     private final Map<Integer, List<Integer>> adjList;
 
     DFS(Map<Integer, List<Integer>> adjList) {

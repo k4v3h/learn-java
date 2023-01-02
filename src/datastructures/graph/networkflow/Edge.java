@@ -27,7 +27,7 @@ public class Edge {
 
     public String toString(int s, int t) {
         String u = from == s ? "s": from == t ? "t" : String.valueOf(from);
-        String v = to == s ? "s" : t == to ? "s" : String.valueOf(to);
+        String v = to == s ? "s" : t == to ? "t" : String.valueOf(to);
         return String.format(
                 "Edge %s -> %s | flow = %d | capacity = %d | is residual: %s",
                 u, v, flow, capacity, isResidual()

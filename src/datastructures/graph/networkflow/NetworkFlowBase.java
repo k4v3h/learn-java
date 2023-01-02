@@ -50,7 +50,7 @@ public abstract class NetworkFlowBase {
         return graph;
     }
 
-    public void visit(int i) {
+    public void markAsVisit(int i) {
         visited[i] = visitedToken;
     }
 
@@ -71,4 +71,14 @@ public abstract class NetworkFlowBase {
     }
 
     public abstract void solve();
+
+    public void printGraph() {
+        List<Edge>[] g = getGraph();
+        for (List<Edge> edges : g) {
+            for (Edge e : edges) {
+                if (e.to == s || e.from == t) continue;
+                if (e.from == s || e.to == t || e.from < e.to) System.out.println(e.toString(s, t));
+            }
+        }
+    }
 }

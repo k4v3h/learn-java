@@ -19,7 +19,7 @@ public class FordFulkersonDfs extends NetworkFlowBase{
     private long dfs(int node, long flow) {
         if (node == t) return flow;
 
-        visited[node] = visitedToken;
+        markAsVisit(node);
 
         List<Edge> edges = graph[node];
         for(Edge edge: edges) {
@@ -69,14 +69,7 @@ public class FordFulkersonDfs extends NetworkFlowBase{
 
         System.out.println(solver.getMaxFlow());
 
-        List<Edge>[] g = solver.getGraph();
-        for (List<Edge> edges : g) {
-            for (Edge e : edges) {
-                if (e.to == s || e.from == t) continue;
-                if (e.from == s || e.to == t || e.from < e.to) System.out.println(e.toString(s, t));
-                System.out.println("R: " + e.residual.toString(s, t));
-            }
-        }
+        solver.printGraph();
     }
 
 }
